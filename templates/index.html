@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neumonia</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <!-- header -->
+    <header class="header">
+        <!-- aqui puede ir un loguito o algo pero de momento no jeje -->
+        <nav> 
+            <a href="#problem">problema</a>
+            <a href="#understand">Entendimiento Negocio y Datos</a>
+            <a href="#data">Ingeniería de Datos</a>
+            <a href="#ing">Ingeniería del Modelo</a>
+            <a href="#evaluation">Evaluación del Modelo</a>
+            <a href="#deploy">Despliegue del Modelo</a>
+            <a href="#monitor">Monitoreo y Mantenimiento</a>
+        </nav>
+    </header>
+
+    <section id="problem" class="section">
+        <div class="problem-container">
+            <img src="source/neumonia infantil china.webp" alt="Neumonía Infantil" class="problem-image">
+            <div class="problem-content">
+                <h1>Sistema de Detección de Neumonía</h1>
+                <p class="description"></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="sub-section">
+        <div class="sub-content">
+            <h3>Planteamiento</h3>
+            <div class="cards-container">
+                <div class="card">
+                    <img src="source/neumonia infantil china.webp" alt="Neumonía Infantil" class="card-image">
+                    <div class="card-content">
+                        <p>La neumonía es una de las principales causas de mortalidad infantil a nivel global (OMS, 2023). Su diagnóstico temprano mediante rayos X es crítico, pero en regiones con escasez de radiólogos, la interpretación de imágenes puede retrasarse</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="source/neumonia infantil china.webp" alt="Neumonía Infantil" class="card-image">
+                    <div class="card-content">
+                        <p>
+                            Falsos negativos/positivos en diagnósticos manuales.
+                            Saturación de sistemas de salud en áreas rurales.
+                            Falta de estandarización en la evaluación de
+                            imágenes.
+                        </p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="source/neumonia infantil china.webp" alt="Neumonía Infantil" class="card-image">
+                    <div class="card-content">
+                        <p>
+                            Desarrollo de un modelo de CNN (DenseNet)
+                            entrenado con el dataset Chest X-Ray para clasificar
+                            automáticamente imágenes de rayos X y detectar
+                            neumonía con alta precisión.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sub-content">
+            <div class="justification-container">
+                <img src="source/neumonia infantil china.webp" alt="Neumonía Infantil" class="justification-image">
+                <div class="justification-content">
+                    <h3>Justificación</h3>
+                    <p>
+                        Este proyecto busca desarrollar un modelo de machine learning para detectar neumonía en radiografías de tórax, cnetrandonos en la necesidad crítica en salud global, la demora en diagnósticos precisos, especialmente en regiones con escasez de especialistas. Utilizando un dataset público de Kaggle (Chest X-Ray Images), se entrenará un modelo de ML "CNN (DenseNet)" para clasificar imágenes, reduciendo falsos negativos que ponen vidas en riesgo, proponemos una aplicación web en flask que optimizará recursos médicos, disminuirá tiempos de diagnóstico. teniendo como base el ODS 3 (Salud yBienestar)
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="sub-content objectives-container">
+            <div class="project-objectives">
+                <h3>Objetivos del Proyecto</h3>
+                <div class="carousel-container">
+                    <div class="carousel">
+                        <input type="radio" name="carousel" id="slide1" checked>
+                        <input type="radio" name="carousel" id="slide2">
+                        <input type="radio" name="carousel" id="slide3">
+                        <input type="radio" name="carousel" id="slide4">
+                        
+                        <div class="carousel-cards">
+                            <div class="carousel-card">
+                                <h4>Objetivo General</h4>
+                                <p>Desarrollar una aplicación web basada
+                                    en un modelo de ML "CNN (DenseNet)"
+                                    para la detección automática de
+                                    neumonía en radiografías de tórax, que
+                                    ayude a reducir los tiempos de espera
+                                    en diagnósticos y la carga en sistemas
+                                    de salud con escasez de especialistas.</p>
+                            </div>
+                            <div class="carousel-card">
+                                <h4>Objetivo Específico 1</h4>
+                                <p>Implementar una red neuronal
+                                    convolucional (DenseNet121), optimizando métricas para minimizar
+                                    falsos negativos.</p>
+                            </div>
+                            <div class="carousel-card">
+                                <h4>Objetivo Específico 2</h4>
+                                <p>Evaluar el modelo con radiólogos,
+                                    comparando sus resultados con
+                                    diagnósticos manuales para garantizar
+                                    confiabilidad..</p>
+                            </div>
+                            <div class="carousel-card">
+                                <h4>Objetivo Específico 3</h4>
+                                <p>Crear una interfaz en Flask que permita a
+                                    los médicos subir radiografías y recibir
+                                    diagnósticos en segundos, con
+                                    explicaciones interpretables (Grad-CAM).</p>
+                            </div>
+                        </div>
+                        
+                        <div class="carousel-nav">
+                            <label for="slide1"></label>
+                            <label for="slide2"></label>
+                            <label for="slide3"></label>
+                            <label for="slide4"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sustainable-objective">
+                <h3>Objetivo de Desarrollo Sostenible</h3>
+                <div class="ods-container">
+                    <div class="ods-image-container">
+                        <img src="source/neumonia infantil china.webp" alt="Neumonía Infantil" class="ods-image">
+                        <div class="ods-overlay">
+                            <p>De acuerdo a la justificacion
+                                anterior, cabe mencionar, que se
+                                el proyecto se realizara acorde
+                                al objetivo de desarrollo
+                                sostenible numero 3 Salud y
+                                bienestar</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="understand" class="section">
+        <h2 class="section-title">Entendimiento Negocio y Datos</h2>
+        <div class="content">
+            <div class="understand-flex-container">
+                <div class="understand-image-container">
+                    <img src="source/neumonia infantil china.webp" alt="Neumonía Infantil" class="understand-image">
+                    <div class="understand-overlay">
+                        <p>Reducir la mortalidad infantil por neumonía
+                            en zonas rurales mediante diagnóstico
+                            temprano automatizado.</p>
+                    </div>
+                </div>
+                
+                <div class="understand-carousel">
+                    <input type="radio" name="understand-slides" id="understand-slide1" checked>
+                    <input type="radio" name="understand-slides" id="understand-slide2">
+                    <input type="radio" name="understand-slides" id="understand-slide3">
+                    <input type="radio" name="understand-slides" id="understand-slide4">
+                    
+                    <div class="understand-cards">
+                        <div class="understand-card">
+                            <h4>Preguntas clave</h4>
+                        </div>
+                        <div class="understand-card">
+                            <h4>¿Qué tipo de neumonía detectar?</h4>
+                        </div>
+                        <div class="understand-card">
+                            <h4>¿Cómo medir el éxito?</h4>
+                        </div>
+                        <div class="understand-card">
+                            <h4>¿Qué hacer con imágenes ambiguas</h4>
+                        </div>
+                    </div>
+                    
+                    <div class="understand-nav">
+                        <label for="understand-slide1"></label>
+                        <label for="understand-slide2"></label>
+                        <label for="understand-slide3"></label>
+                        <label for="understand-slide4"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="understand-analysis-container">
+            <div class="analysis-box">
+                <h3>Análisis de Variedad</h3>
+                <div class="analysis-content">
+                    <p>
+                        Técnica
+                        <br>
+                            - Hardware: onrender
+                            <br>
+                            - FRAMEWORK: Flask.
+                            <br>
+                        Organizacional
+                        <br>
+                            - Hospital asociado dispuesto a
+                            probar el modelo en fase piloto.
+                            <br>
+                        Riesgos
+                        <br>
+                            - Sesgo en datos: Solo incluye
+                            niños
+                    </p>
+                </div>
+            </div>
+            
+            <div class="analysis-box">
+                <h3>Evaluación del Dataset</h3>
+                <div class="analysis-content">
+                    <p>TEl dataset de Kaggle (Chest X-Ray Images) es
+                        adecuado para el proyecto, ya que contiene 5,863
+                        radiografías etiquetadas (neumonía/normal)
+                        validadas por expertos, con resolución suficiente
+                        (1,024x1,024 px) para detectar patrones clínicos.
+                        Aunque está limitado a pacientes pediátricos, su
+                        tamaño y calidad permiten entrenar un modelo
+                        confiable para el diagnóstico automático,
+                        cumpliendo con el objetivo clínico prioritario..</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="data" class="section">
+        <h2>Ingeniería de Datos</h2>
+        <div class="content">
+            <div class="engineering-grid">
+                <div class="grid-item large">
+                    <h3>Selección</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+                <div class="grid-item small">
+                    <h3>Limpieza</h3>
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+                <div class="grid-item small">
+                    <h3>Transformación</h3>
+                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                </div>
+            </div>
+            <div class="engineering-full-width">
+                <h3>Documentación</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="ing" class="section">
+        <h2>Selección de Algoritmos</h2>
+        <div class="content">
+            <div class="engineering-grid">
+                <div class="grid-item large">
+                    <h3>Arquitectura del Modelo</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+                <div class="grid-item small">
+                    <h3>Entrenamiento</h3>
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+                <div class="grid-item small">
+                    <h3>Validación</h3>
+                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                </div>
+            </div>
+            <div class="engineering-full-width">
+                <h3>Ajuste de Hiperparámetros</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="evaluation" class="section">
+        <h2>Evaluación del Modelo</h2>
+        <div class="content">
+            <!-- Aquí irá el contenido de la sección evaluación -->
+        </div>
+    </section>
+
+    <section id="deploy" class="section">
+        <h2>Despliegue del Modelo</h2>
+        <div class="content">
+            <!-- Aquí irá el contenido de la sección despliegue -->
+        </div>
+    </section>
+
+    <section id="monitor" class="section">
+        <h2>Monitoreo y Mantenimiento</h2>
+        <div class="content">
+            <!-- Aquí irá el contenido de la sección monitoreo -->
+        </div>
+    </section>
+</body>
+</html>
