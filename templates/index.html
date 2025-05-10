@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizador de Dataset de Rayos X</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Visualizador de Dataset de Rayos X de Neumonía</h1>
+        
+        {% if dataset_path %}
+        <div class="breadcrumb">
+            <strong>Ruta del dataset:</strong> {{ dataset_path }}
+            {% if current_folder %}
+            <br>
+            <strong>Carpeta actual:</strong> {{ current_folder }}
+            <br>
+            <a href="{{ url_for('home') }}">Volver al inicio</a>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        {% if folders %}
+        <h2>Carpetas disponibles:</h2>
+        <div class="folder-list">
+            {% for folder in folders %}
+            <a href="{{ url_for('show_folder', folder_path=current_folder+'/'+folder if current_folder else folder) }}" class="folder-item">
+                📁 {{ folder }}
+            </a>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if files %}
+        <h2>Imágenes en esta carpeta:</h2>
+        <div class="image-grid">
+            {% for file in files %}
+            <div class="image-item">
+                <img src="{{ url_for('serve_image', image_path=current_folder+'/'+file) }}" alt="{{ file }}">
+                <div class="image-caption">{{ file }}</div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if not folders and not files %}
+        <p>No se encontraron carpetas o imágenes. Asegúrate de que el dataset se haya descargado correctamente.</p>
+        <p><a href="{{ url_for('download_dataset') }}">Descargar el dataset</a></p>
+        {% endif %}
+    </div>
+</body>
+</html>
