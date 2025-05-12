@@ -1,67 +1,59 @@
-from flask import Flask, render_template, send_from_directory, redirect, url_for
 import os
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
+import numpy as np
+from tensorflow.keras.preprocessing import image
+from tensorflow.keras.models import load_model
+from flask import Flask
+from flask import render_template
+from flask import request
+from flask import redirect
+from flask import url_for
+from flask import send_from_directory
 
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = 'uploads'
+os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+model = load_model('models/pneumonia_cnn.keras')  
 
-@app.route("/download-dataset")
-def download_dataset():
-    try:
-        dataset_path = get_dataset_path()
-        if not dataset_path:
-            raise Exception("Dataset no encontrado en la carpeta data")
-        return redirect(url_for('home'))
-    except Exception as e:
-        return f"Error: {str(e)}. Coloca el dataset en la carpeta data/chest-xray-pneumonia"
 
-@app.route("/")
+import json
+try:
+    with open('models/training_metrics.json', 'r') as f:
+        training_metrics = json.load(f)
+except FileNotFoundError:
+    print("Advertencia: No se encontraron métricas de entrenamiento")
+    training_metrics = None
+
+@app.route('/', methods=['GET', 'POST'])
 def home():
-    try:
-        dataset_path = get_dataset_path()
-        if not dataset_path:
-            raise Exception("Dataset no encontrado. Coloca el dataset en la carpeta 'data'")
-        folders = [f for f in os.listdir(dataset_path) if os.path.isdir(os.path.join(dataset_path, f))]
-        return render_template('index.html', dataset_path=dataset_path, folders=folders)
-    except Exception as e:
-        return f"Error al cargar el dataset: {str(e)}. Usa /download-dataset para descargarlo primero."
+    if request.method == 'POST':
+        file = request.files['file']
+        if file and allowed_file(file.filename):
+            filename = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+            file.save(filename)
+            
+            img = image.load_img(filename, target_size=(150, 150))
+            img_array = image.img_to_array(img)/255.0
+            img_array = np.expand_dims(img_array, axis=0)
+            
+            prediction = model.predict(img_array)[0][0]
+            result = 'Neumonía' if prediction > 0.5 else 'Normal'
+            
+            return render_template('index.html', 
+                                prediction=result,
+                                confidence=float(prediction),
+                                filename=file.filename,
+                                metrics=training_metrics) 
+    
+    return render_template('index.html', metrics=training_metrics)
 
-@app.route("/folder/<path:folder_path>")
-def show_folder(folder_path):
-    try:
-        dataset_path = get_dataset_path()
-        if not dataset_path:
-            raise Exception("Dataset no encontrado. Por favor usa /download-dataset para descargarlo")
-        full_path = os.path.join(dataset_path, folder_path)
-        
-        if not os.path.exists(full_path) or not os.path.isdir(full_path):
-            return "Carpeta no encontrada"
-        
-        items = os.listdir(full_path)
-        files = [f for f in items if os.path.isfile(os.path.join(full_path, f)) and f.lower().endswith(('.png', '.jpg', '.jpeg', '.gif'))]
-        subfolders = [f for f in items if os.path.isdir(os.path.join(full_path, f))]
-        
-        return render_template('index.html', 
-                            dataset_path=dataset_path, 
-                            current_folder=folder_path,
-                            files=files,
-                            folders=subfolders)
-    except Exception as e:
-        return f"Error: {str(e)}"
+@app.route('/uploads/<filename>')
+def serve_uploaded_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
-@app.route("/image/<path:image_path>")
-def serve_image(image_path):
-    try:
-        dataset_path = get_dataset_path()
-        if not dataset_path:
-            raise Exception("Dataset no encontrado. Por favor usa /download-dataset para descargarlo")
-        directory = os.path.dirname(os.path.join(dataset_path, image_path))
-        filename = os.path.basename(image_path)
-        return send_from_directory(directory, filename)
-    except Exception as e:
-        return f"Error al cargar la imagen: {str(e)}"
-
-def get_dataset_path():
-    local_path = os.path.abspath('data')  # Cambiamos la ruta
-    return local_path if os.path.exists(local_path) else None
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in {'png', 'jpg', 'jpeg'}
 
 if __name__ == "__main__":
+    os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
     app.run(debug=True)
