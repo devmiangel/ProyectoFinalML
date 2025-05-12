@@ -46,8 +46,7 @@
         {% endif %}
 
         {% if not folders and not files %}
-        <p>No se encontraron carpetas o imágenes. Asegúrate de que el dataset se haya descargado correctamente.</p>
-        <p><a href="{{ url_for('download_dataset') }}">Descargar el dataset</a></p>
+        <p>El dataset debe estar ubicado en: data/chest-xray-pneumonia</p>
         {% endif %}
     </div>
 </body>
