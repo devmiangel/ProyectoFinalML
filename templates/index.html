@@ -4,20 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Neumonia</title>
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <!-- header -->
-    <header class="header">
-        <!-- aqui puede ir un loguito o algo pero de momento no jeje -->
+
+    <header class="header">    
         <nav> 
-            <a href="#problem">problema</a>
-            <a href="#understand">Entendimiento Negocio y Datos</a>
+            <a href="#model">Modelo</a>
+            <a href="#problem2">Problema</a>
+            <a href="#understand">Entendimiento Negocio y Datos
+            </a>
             <a href="#data">Ingeniería de Datos</a>
-            <a href="#ing">Ingeniería del Modelo</a>
+            <a href="#ing">Selección de Algoritmos</a>
             <a href="#evaluation">Evaluación del Modelo</a>
-            <a href="#deploy">Despliegue del Modelo</a>
-            <a href="#monitor">Monitoreo y Mantenimiento</a>
         </nav>
     </header>
 
@@ -26,12 +25,58 @@
             <img src="source/neumonia infantil china.webp" alt="Neumonía Infantil" class="problem-image">
             <div class="problem-content">
                 <h1>Sistema de Detección de Neumonía</h1>
-                <p class="description"></p>
+                <a href="https://github.com/devmiangel/ProyectoFinalML" class="link link-tittle">Portafolio github</a>
             </div>
         </div>
     </section>
 
-    <section class="sub-section">
+    <section id="model">
+        <div class="container">
+            <h2 class="problem-tittle">Modelo</h2>
+            
+            {% if dataset_path %}
+            <div class="breadcrumb">
+                <strong>Ruta del dataset:</strong> {{ dataset_path }}
+                {% if current_folder %}
+                <br>
+                <strong>Carpeta actual:</strong> {{ current_folder }}
+                <br>
+                <a href="{{ url_for('home') }}">Volver al inicio</a>
+                {% endif %}
+            </div>
+            {% endif %}
+    
+            {% if folders %}
+            <h2>Carpetas disponibles:</h2>
+            <div class="folder-list">
+                {% for folder in folders %}
+                <a href="{{ url_for('show_folder', folder_path=current_folder+'/'+folder if current_folder else folder) }}" class="folder-item">
+                    📁 {{ folder }}
+                </a>
+                {% endfor %}
+            </div>
+            {% endif %}
+    
+            {% if files %}
+            <h2>Imágenes en esta carpeta:</h2>
+            <div class="image-grid">
+                {% for file in files %}
+                <div class="image-item">
+                    <img src="{{ url_for('serve_image', image_path=current_folder+'/'+file) }}" alt="{{ file }}">
+                    <div class="image-caption">{{ file }}</div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+    
+            {% if not folders and not files %}
+            <p>El dataset debe estar ubicado en: data/chest-xray-pneumonia</p>
+            {% endif %}
+        </div>
+    </section>
+
+    <section id="problem2" class="sub-section">
+        <h2 class="problem-tittle">Problema</h2>
         <div class="sub-content">
             <h3>Planteamiento</h3>
             <div class="cards-container">
@@ -66,10 +111,11 @@
             </div>
         </div>
         <div class="sub-content">
+            <h3>Justificación</h3>
             <div class="justification-container">
                 <img src="source/neumonia infantil china.webp" alt="Neumonía Infantil" class="justification-image">
                 <div class="justification-content">
-                    <h3>Justificación</h3>
+                    
                     <p>
                         Este proyecto busca desarrollar un modelo de machine learning para detectar neumonía en radiografías de tórax, cnetrandonos en la necesidad crítica en salud global, la demora en diagnósticos precisos, especialmente en regiones con escasez de especialistas. Utilizando un dataset público de Kaggle (Chest X-Ray Images), se entrenará un modelo de ML "CNN (DenseNet)" para clasificar imágenes, reduciendo falsos negativos que ponen vidas en riesgo, proponemos una aplicación web en flask que optimizará recursos médicos, disminuirá tiempos de diagnóstico. teniendo como base el ODS 3 (Salud yBienestar)
                     </p>
@@ -280,23 +326,27 @@
     </section>
 
     <section id="evaluation" class="section">
-        <h2>Evaluación del Modelo</h2>
-        <div class="content">
-            <!-- Aquí irá el contenido de la sección evaluación -->
-        </div>
-    </section>
-
-    <section id="deploy" class="section">
-        <h2>Despliegue del Modelo</h2>
-        <div class="content">
-            <!-- Aquí irá el contenido de la sección despliegue -->
-        </div>
-    </section>
-
-    <section id="monitor" class="section">
-        <h2>Monitoreo y Mantenimiento</h2>
-        <div class="content">
-            <!-- Aquí irá el contenido de la sección monitoreo -->
+        <h2 class="evaluation-tittle">Evaluación del Modelo</h2>
+        <div class="sub-content">
+           
+            <div class="engineering-grid">
+                <div class="grid-item large">
+                    <h3>Métricas de Rendimiento</h3>
+                    <img src="source/metricas.png" alt="Métricas" class="card-image">
+                    <p></p>
+                </div>
+                
+                <div class="grid-item small">
+                    <h3>Validación Cruzada</h3>
+                    <p></p>
+                </div>
+                
+                <div class="grid-item small">
+                    <h3>Curvas de Aprendizaje</h3>
+                    <img src="source/curvas.png" alt="Curvas" class="card-image">
+                    <p></p>
+                </div>
+            </div>
         </div>
     </section>
 </body>

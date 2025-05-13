@@ -1,0 +1,842 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: monospace;
+}
+
+.header {
+    background: linear-gradient(#2c668c);
+    padding: 1rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 0.75rem;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.section {
+    min-height: 100vh;
+    padding: 6rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+
+h1 {
+    font-size: 5rem;
+    margin-bottom: 2rem;
+    color: #fff;
+    padding: 1rem 2rem;
+    text-align: right; 
+  
+}
+
+
+h2 {
+    margin-bottom: 2rem;
+    color: #333;
+    text-shadow: none;
+    background-color: white;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    width: 60%;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Modificación de la primera sección */
+#problem {
+    background: linear-gradient( #3498db, #2c3e50);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilos para las subsecciones */
+.sub-section {
+    min-height: 50vh;
+    padding: 3rem 2rem;
+    background: linear-gradient(#2c3e50, #3498db);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+#understand {
+    background: linear-gradient(#3498db,#2c3e50);
+    position: relative;
+}
+
+#understand::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../source/neumonia infantil china.webp');
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 13), transparent);
+    background-size: cover;
+    background-position: center;
+    opacity: 0.15;
+    z-index: 1;
+}
+
+#understand .content {
+    position: relative;
+    z-index: 2;
+    width: 75%;
+    max-width: 1200px;
+}
+
+#understand h2 {
+    background: none;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: none;
+}
+
+#data {
+    background: linear-gradient( #2c3e50, #3498db);
+}
+
+#ing {
+    background: linear-gradient( #3498db,#2c3e50);
+}
+
+#evaluation {
+    background: linear-gradient( #2c3e50, #3498db);
+}
+
+#deploy {
+    background: linear-gradient(#3498db,#2c3e50);
+}
+
+#monitor {
+    background: linear-gradient(#2c3e50, #3498db);
+}
+
+.problem-container {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    max-width: 1200px;
+    padding: 2rem;
+}
+
+.problem-image {
+    width: 45%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.problem-image:hover {
+    transform: scale(1.01);
+}
+
+.problem-content {
+    width: 55%;
+}
+
+#problem h2 {
+    position: static;
+    transform: none;
+    text-align: right;
+    margin-bottom: 1.5rem;
+    width: 100%;
+    font-size: 2.5rem;
+    background: none;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: none;
+}
+
+.description {
+    color: white;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: right;
+}
+
+/* Estilos para las subsecciones */
+.sub-section {
+    min-height: 100vh;
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    gap: 2rem;
+}
+
+.sub-content {
+    width: 90%;
+    max-width: 75%;
+    margin: 0 auto;
+    text-align: left;
+    color: white;
+    padding: 2rem;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(5px);
+}
+
+.sub-section h3 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 0.5rem;
+}
+
+.sub-section p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+/* Estilos para las cartas en planteamiento */
+.cards-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 2rem auto;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    overflow: hidden;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 1.5rem;
+    color: white;
+}
+
+.card-content p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-top: 1rem;
+}
+
+.justification-container {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+}
+
+.justification-image {
+    width: 45%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.justification-image:hover {
+    transform: scale(1.01);
+}
+
+.justification-content {
+    width: 55%;
+}
+/* Estilos para el carrusel */
+.carousel-container {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    padding: 2rem 0;
+}
+
+.carousel {
+    width: 100%;
+    position: relative;
+}
+
+.carousel input {
+    display: none;
+}
+
+.carousel-cards {
+    display: flex;
+    width: 400%;
+    transition: transform 0.5s ease;
+}
+
+.carousel-card {
+    width: 25%;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    margin: 0 1rem;
+}
+
+.carousel-card h4 {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.carousel-card p {
+    color: white;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.carousel-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.carousel-nav label {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.carousel-nav label:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* Control del carrusel con radio buttons */
+#slide1:checked ~ .carousel-cards {
+    transform: translateX(0);
+}
+
+#slide2:checked ~ .carousel-cards {
+    transform: translateX(-25%);
+}
+
+#slide3:checked ~ .carousel-cards {
+    transform: translateX(-50%);
+}
+
+#slide4:checked ~ .carousel-cards {
+    transform: translateX(-75%);
+}
+
+#slide1:checked ~ .carousel-nav label:nth-child(1),
+#slide2:checked ~ .carousel-nav label:nth-child(2),
+#slide3:checked ~ .carousel-nav label:nth-child(3),
+#slide4:checked ~ .carousel-nav label:nth-child(4) {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+
+/* Estilos para Objetivos de Desarrollo Sostenible */
+.ods-container {
+    width: 100%;
+    max-height: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0;
+}
+
+.ods-image-container {
+    position: relative;
+    width: 80%;
+    max-width: 600px;
+    overflow: hidden;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.ods-image {
+    width: 100%;
+    display: block;
+    transition: all 0.5s ease;
+}
+
+.ods-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: all 0.5s ease;
+    padding: 2rem;
+}
+
+.ods-overlay p {
+    color: white;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.ods-image-container:hover .ods-image {
+    transform: scale(1.2);
+    filter: brightness(0.7);
+}
+
+.ods-image-container:hover .ods-overlay {
+    opacity: 1;
+}
+
+.objectives-container {
+    display: flex;
+    gap: 2rem;
+    align-items: stretch;
+}
+
+.project-objectives,
+.sustainable-objective {
+    flex: 1;
+    width: 50%;
+}
+
+.carousel-container {
+    height: 100%;
+}
+
+.carousel {
+    height: 100%;
+}
+
+.ods-container {
+    height: 100%;
+    margin: 0;
+}
+
+.ods-image-container {
+    height: 100%;
+    width: 100%;
+    max-width: none;
+}
+
+.ods-image {
+    height: 100%;
+    object-fit: cover;
+}
+/* Estilos para el título de la sección */
+.section-title {
+    font-size: 3rem !important;
+    margin-bottom: 3rem !important;
+    width: 80% !important;
+}
+
+/* Estilos para el contenido de entendimiento */
+#understand .content {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    align-items: center;
+    width: 100%;
+}
+
+/* Estilos para el carrusel de entendimiento */
+.understand-carousel {
+    width: 100%;
+    max-width: 900px;
+    position: relative;
+    overflow: hidden;
+    padding: 2rem 0;
+}
+
+.understand-carousel input {
+    display: none;
+}
+
+.understand-flex-container {
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.understand-image-container {
+    flex: 0 0 auto;
+    width: 120px;
+    height: 280px;
+    overflow: hidden;
+    border-radius: 15px;
+    cursor: pointer;
+    position: relative;
+}
+
+.understand-carousel {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    padding: 2rem 0;
+}
+
+.understand-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: all 0.5s ease;
+}
+
+.understand-cards {
+    display: flex;
+    width: 400%;
+    transition: transform 0.5s ease;
+}
+
+.understand-card {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centrar verticalmente el contenido */
+    width: 25%;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    margin: 0 1rem;
+    text-align: center; /* Asegurar que el texto esté centrado horizontalmente */
+    transition: transform 0.3s ease;
+}
+
+.understand-card:hover {
+    transform: scale(1.05); /* Expande la carta un 5% */
+}
+
+.understand-card h4 {
+    color: white;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.understand-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.understand-nav label {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.understand-nav label:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* Control del carrusel actualizado */
+#understand-slide1:checked ~ .understand-cards {
+    transform: translateX(0);
+}
+
+#understand-slide2:checked ~ .understand-cards {
+    transform: translateX(-25%);
+}
+
+#understand-slide3:checked ~ .understand-cards {
+    transform: translateX(-50%);
+}
+
+#understand-slide4:checked ~ .understand-cards {
+    transform: translateX(-75%);
+}
+
+#understand-slide1:checked ~ .understand-nav label:nth-child(1),
+#understand-slide2:checked ~ .understand-nav label:nth-child(2),
+#understand-slide3:checked ~ .understand-nav label:nth-child(3),
+#understand-slide4:checked ~ .understand-nav label:nth-child(4) {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+/* Estilos para la imagen con overlay */
+.understand-image-container {
+    position: relative;
+    width: 80%;
+    max-width: 600px;
+    overflow: hidden;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.understand-image-container::after {
+    content: "Objetivos de Negocio";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    opacity: 1;
+}
+
+.understand-image-container:hover::after {
+    opacity: 0; 
+}
+
+.understand-image {
+    width: 100%;
+    display: block;
+    transition: all 0.5s ease;
+}
+
+.understand-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: all 0.5s ease;
+    padding: 2rem;
+}
+
+.understand-overlay p {
+    color: white;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.understand-image-container:hover .understand-image {
+    content: hide;
+    transform: scale(1.1);
+    filter: brightness(0.7);
+}
+
+.understand-image-container:hover .understand-overlay {
+    opacity: 1;
+}
+
+/* Estilos para los análisis */
+.understand-analysis-container {
+    display: flex;
+    gap: 2rem;
+    max-width: 75%;
+    margin-top: 3rem;
+}
+
+.analysis-box {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    transition: transform 0.3s ease;
+}
+
+.analysis-box:hover {
+    transform: translateY(-5px);
+}
+
+.analysis-box h3 {
+    color: white;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 0.5rem;
+}
+
+.analysis-content {
+    color: white;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    text-align: justify;
+}
+/* Estilos para el grid de ingeniería */
+.engineering-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 2rem;
+    width: 75%;
+    margin: 2rem auto;
+}
+
+.grid-item {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    transition: transform 0.3s ease;
+}
+
+.grid-item:hover {
+    transform: translateY(-5px);
+}
+
+.grid-item.large {
+    grid-row: 1 / span 2;
+    height: 100%;
+}
+
+.grid-item.small {
+    height: auto;
+}
+
+.grid-item h3 {
+    color: white;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 0.5rem;
+}
+
+.grid-item p {
+    color: white;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.engineering-full-width {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-top: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    transition: transform 0.3s ease;
+}
+
+.engineering-full-width:hover {
+    transform: translateY(-5px);
+}
+
+.engineering-full-width h3 {
+    color: white;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 0.5rem;
+}
+
+.engineering-full-width p {
+    color: white;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+#data h2,
+#ing h2,
+#problem h2,
+.problem-tittle,
+.evaluation-tittle,
+#understand h2 {
+    font-size: 3.5rem;
+    background: transparent;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    border: 2px solid white;
+    box-shadow: none;
+}
+#hiperparametros h2,
+#documentacion h2 {
+    font-size: 3.5rem;
+    background: transparent;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    border: 2px solid white;
+    box-shadow: none;
+}
+
+.link-tittle {
+    text-decoration: none;
+    position: absolute;
+    text-align: center;
+    color: #fff;
+    right: 8%;
+    font-size: 1.5rem;
+    font-weight: bold;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    right: 13rem;
+}
+
+.link-tittle:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
