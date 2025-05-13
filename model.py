@@ -14,17 +14,18 @@ val_dir = os.path.join(data_dir, 'val')
 #medidas
 IMG_SIZE = 150  
 BATCH_SIZE = 32 
-EPOCHS = 10
+EPOCHS = 20
 
 #daatos
 train_datagen = ImageDataGenerator(
     rescale=1./255,
-    rotation_range=20,
-    width_shift_range=0.2,
-    height_shift_range=0.2,
-    shear_range=0.2,
-    zoom_range=0.2,
+    rotation_range=30,
+    width_shift_range=0.3,
+    height_shift_range=0.3,
+    shear_range=0.3,
+    zoom_range=0.3,
     horizontal_flip=True,
+    brightness_range=[0.8,1.2],
     validation_split=0.2
 )
 
@@ -33,7 +34,8 @@ train_generator = train_datagen.flow_from_directory(
     target_size=(IMG_SIZE, IMG_SIZE),
     batch_size=BATCH_SIZE,
     class_mode='binary',
-    subset='training'
+    subset='training',
+    shuffle=True
 )
 
 validation_generator = train_datagen.flow_from_directory(
@@ -44,19 +46,32 @@ validation_generator = train_datagen.flow_from_directory(
     subset='validation'
 )
 
-# Modelo 
+from tensorflow.keras.regularizers import l2
+
+# Modelo con regularización L2 mejorado
 model = Sequential([
-    Conv2D(32, (3,3), activation='relu', input_shape=(IMG_SIZE, IMG_SIZE, 3)),
+    Conv2D(32, (3,3), activation='relu', input_shape=(IMG_SIZE, IMG_SIZE, 3), kernel_regularizer=l2(0.001)),
     MaxPooling2D(2,2),
-    Conv2D(64, (3,3), activation='relu'),
+    Conv2D(64, (3,3), activation='relu', kernel_regularizer=l2(0.001)),
     MaxPooling2D(2,2),
-    Conv2D(128, (3,3), activation='relu'),
+    Conv2D(128, (3,3), activation='relu', kernel_regularizer=l2(0.001)),
     MaxPooling2D(2,2),
     Flatten(),
-    Dense(512, activation='relu'),
-    Dropout(0.7),
-    Dense(1, activation='sigmoid')
+    Dense(512, activation='relu', kernel_regularizer=l2(0.001)),
+    Dropout(0.5),
+    Dense(256, activation='relu', kernel_regularizer=l2(0.001)),
+    Dropout(0.4),
+    Dense(1, activation='sigmoid', kernel_regularizer=l2(0.001))
 ])
+
+validation_generator = train_datagen.flow_from_directory(
+    train_dir,
+    target_size=(IMG_SIZE, IMG_SIZE),
+    batch_size=BATCH_SIZE,
+    class_mode='binary',
+    subset='validation'  # Split automático 20%
+)
+
 
 # modelo
 model.compile(optimizer='adam',
@@ -66,15 +81,16 @@ model.compile(optimizer='adam',
 from tensorflow.keras.callbacks import EarlyStopping
 import json  
 
-early_stop = EarlyStopping(monitor='val_loss', patience=3, restore_best_weights=True)
+early_stop = EarlyStopping(monitor='val_loss', patience=5, restore_best_weights=True)
 
 history = model.fit(
     train_generator,
-    steps_per_epoch=train_generator.samples // BATCH_SIZE,
+    steps_per_epoch=len(train_generator),
     epochs=EPOCHS,
-    callbacks=[early_stop],  
+    callbacks=[early_stop],
     validation_data=validation_generator,
-    validation_steps=validation_generator.samples // BATCH_SIZE
+    validation_steps=len(validation_generator),
+    shuffle=True
 )
 
 #modelo y métricas
