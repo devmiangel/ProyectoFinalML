@@ -38,7 +38,7 @@ nav a:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-.section {
+.section, #model {
     min-height: 100vh;
     padding: 6rem 2rem 2rem;
     display: flex;
@@ -47,6 +47,9 @@ nav a:hover {
     position: relative;
 }
 
+#model{
+    background-color: #2c3e50;
+}
 
 h1 {
     font-size: 5rem;
@@ -167,7 +170,7 @@ h2 {
     width: 55%;
 }
 
-#problem h2 {
+#problem h2, .model-tittle {
     position: static;
     transform: none;
     text-align: right;
@@ -798,7 +801,7 @@ h2 {
 #data h2,
 #ing h2,
 #problem h2,
-.problem-tittle,
+.problem-tittle,.model-tittle,
 .evaluation-tittle,
 #understand h2 {
     font-size: 3.5rem;
@@ -839,4 +842,21 @@ h2 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.folder-item {
+    background-color: #e3f2fd;
+    padding: 12px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    color: #1565c0;
+    display: inline-block;
+    border: 1px solid #bbdefb;
+    min-width: 15rem;
+}
 
+.folder-item:hover {
+    background-color: #bbdefb;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}

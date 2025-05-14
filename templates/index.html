@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Neumonia</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
 </head>
 <body>
 
@@ -22,7 +23,7 @@
 
     <section id="problem" class="section">
         <div class="problem-container">
-            <img src="source/neumonia infantil china.webp" alt="Neumonía Infantil" class="problem-image">
+            <img src="{{ url_for('static', filename='images/neumonia.webp') }}" alt="Neumonía Infantil" class="problem-image">
             <div class="problem-content">
                 <h1>Sistema de Detección de Neumonía</h1>
                 <a href="https://github.com/devmiangel/ProyectoFinalML" class="link link-tittle">Portafolio github</a>
@@ -32,46 +33,10 @@
 
     <section id="model">
         <div class="container">
-            <h2 class="problem-tittle">Modelo</h2>
-            
-            {% if dataset_path %}
-            <div class="breadcrumb">
-                <strong>Ruta del dataset:</strong> {{ dataset_path }}
-                {% if current_folder %}
-                <br>
-                <strong>Carpeta actual:</strong> {{ current_folder }}
-                <br>
-                <a href="{{ url_for('home') }}">Volver al inicio</a>
-                {% endif %}
-            </div>
-            {% endif %}
-    
-            {% if folders %}
-            <h2>Carpetas disponibles:</h2>
-            <div class="folder-list">
-                {% for folder in folders %}
-                <a href="{{ url_for('show_folder', folder_path=current_folder+'/'+folder if current_folder else folder) }}" class="folder-item">
-                    📁 {{ folder }}
-                </a>
-                {% endfor %}
-            </div>
-            {% endif %}
-    
-            {% if files %}
-            <h2>Imágenes en esta carpeta:</h2>
-            <div class="image-grid">
-                {% for file in files %}
-                <div class="image-item">
-                    <img src="{{ url_for('serve_image', image_path=current_folder+'/'+file) }}" alt="{{ file }}">
-                    <div class="image-caption">{{ file }}</div>
-                </div>
-                {% endfor %}
-            </div>
-            {% endif %}
-    
-            {% if not folders and not files %}
-            <p>El dataset debe estar ubicado en: data/chest-xray-pneumonia</p>
-            {% endif %}
+            <h2 class="model-tittle">Modelo</h2>
+            <a href="" class="folder-item">
+                selecciona/arrastra la radiografia
+            </a>
         </div>
     </section>
 
@@ -81,30 +46,27 @@
             <h3>Planteamiento</h3>
             <div class="cards-container">
                 <div class="card">
-                    <img src="source/neumonia infantil china.webp" alt="Neumonía Infantil" class="card-image">
+                    <img src="{{ url_for('static', filename='images/planteamiento.jpg') }}" alt="Neumonía Infantil" class="card-image">
                     <div class="card-content">
-                        <p>La neumonía es una de las principales causas de mortalidad infantil a nivel global (OMS, 2023). Su diagnóstico temprano mediante rayos X es crítico, pero en regiones con escasez de radiólogos, la interpretación de imágenes puede retrasarse</p>
+                        <p>La neumonía es una de las principales causas de mortalidad infantil a nivel global (OMS, 2023). Su diagnóstico temprano mediante rayos X es crítico</p>
                     </div>
                 </div>
                 <div class="card">
-                    <img src="source/neumonia infantil china.webp" alt="Neumonía Infantil" class="card-image">
+                    <img src="{{ url_for('static', filename='images/planteamiento2.jpg') }}" alt="Neumonía Infantil" class="card-image">
                     <div class="card-content">
                         <p>
-                            Falsos negativos/positivos en diagnósticos manuales.
-                            Saturación de sistemas de salud en áreas rurales.
-                            Falta de estandarización en la evaluación de
-                            imágenes.
+                            en regiones con escasez de radiólogos, la interpretación de imágenes puede retrasarse
                         </p>
                     </div>
                 </div>
                 <div class="card">
-                    <img src="source/neumonia infantil china.webp" alt="Neumonía Infantil" class="card-image">
+                    <img src="{{ url_for('static', filename='images/interrogante.jpg') }}" alt="Neumonía Infantil" class="card-image">
                     <div class="card-content">
                         <p>
-                            Desarrollo de un modelo de CNN (DenseNet)
-                            entrenado con el dataset Chest X-Ray para clasificar
-                            automáticamente imágenes de rayos X y detectar
-                            neumonía con alta precisión.
+                            Saturación de sistemas de salud en áreas rurales.
+                            <br>
+                            Falta de estandarización en la evaluación de
+                            imágenes.
                         </p>
                     </div>
                 </div>
@@ -113,12 +75,14 @@
         <div class="sub-content">
             <h3>Justificación</h3>
             <div class="justification-container">
-                <img src="source/neumonia infantil china.webp" alt="Neumonía Infantil" class="justification-image">
+                <img src="{{ url_for('static', filename='images/pulmon.jpeg') }}" alt="Neumonía Infantil" class="justification-image">
                 <div class="justification-content">
                     
                     <p>
-                        Este proyecto busca desarrollar un modelo de machine learning para detectar neumonía en radiografías de tórax, cnetrandonos en la necesidad crítica en salud global, la demora en diagnósticos precisos, especialmente en regiones con escasez de especialistas. Utilizando un dataset público de Kaggle (Chest X-Ray Images), se entrenará un modelo de ML "CNN (DenseNet)" para clasificar imágenes, reduciendo falsos negativos que ponen vidas en riesgo, proponemos una aplicación web en flask que optimizará recursos médicos, disminuirá tiempos de diagnóstico. teniendo como base el ODS 3 (Salud yBienestar)
-                    </p>
+                        Este proyecto busca desarrollar un modelo de machine learning para detectar neumonía en radiografías de tórax.
+                        <br>
+                        Utilizando un data set público de Kaggle (Chest X-Ray Images), se entrena un modelo de ML "CNN (convolucional neuronal network)" para clasificar imágenes, facilitando la lectura de radiografías, se propone una aplicación web en flask que optimiza recursos médicos y disminuye tiempos de diagnóstico interpretados por los especialistas. 
+                        </p>
                 </div>
             </div>
         </div>
@@ -135,33 +99,27 @@
                         <div class="carousel-cards">
                             <div class="carousel-card">
                                 <h4>Objetivo General</h4>
-                                <p>Desarrollar una aplicación web basada
-                                    en un modelo de ML "CNN (DenseNet)"
-                                    para la detección automática de
-                                    neumonía en radiografías de tórax, que
-                                    ayude a reducir los tiempos de espera
-                                    en diagnósticos y la carga en sistemas
-                                    de salud con escasez de especialistas.</p>
+                                <p>
+                                    Desarrollar una aplicación web basada en un modelo de ML "CNN (red neuronal convolucional )" para la detección automática de neumonía en radiografías de tórax, que ayude a reducir los tiempos de espera en diagnósticos y la carga en sistemas de salud con escasez de especialistas
+                                </p>
                             </div>
                             <div class="carousel-card">
                                 <h4>Objetivo Específico 1</h4>
-                                <p>Implementar una red neuronal
-                                    convolucional (DenseNet121), optimizando métricas para minimizar
-                                    falsos negativos.</p>
+                                <p>
+                                    Implementar una red neuronal convolucional (CNN), optimizando métricas para minimizar falsos negativos
+                                </p>
                             </div>
                             <div class="carousel-card">
                                 <h4>Objetivo Específico 2</h4>
-                                <p>Evaluar el modelo con radiólogos,
-                                    comparando sus resultados con
-                                    diagnósticos manuales para garantizar
-                                    confiabilidad..</p>
+                                <p>
+                                    Evaluar el modelo con radiólogos, comparando sus resultados con diagnósticos manuales para garantizar confiabilidad.
+                                </p>
                             </div>
                             <div class="carousel-card">
                                 <h4>Objetivo Específico 3</h4>
-                                <p>Crear una interfaz en Flask que permita a
-                                    los médicos subir radiografías y recibir
-                                    diagnósticos en segundos, con
-                                    explicaciones interpretables (Grad-CAM).</p>
+                                <p>
+                                    Crear una interfaz en Flask que permita a los médicos subir radiografías y recibir diagnósticos en segundos, con explicaciones interpretables
+                                </p>
                             </div>
                         </div>
                         
@@ -178,7 +136,7 @@
                 <h3>Objetivo de Desarrollo Sostenible</h3>
                 <div class="ods-container">
                     <div class="ods-image-container">
-                        <img src="source/neumonia infantil china.webp" alt="Neumonía Infantil" class="ods-image">
+                        <img src="{{ url_for('static', filename='images/ods.png') }}"alt="Neumonía Infantil" class="ods-image">
                         <div class="ods-overlay">
                             <p>De acuerdo a la justificacion
                                 anterior, cabe mencionar, que se
@@ -198,7 +156,7 @@
         <div class="content">
             <div class="understand-flex-container">
                 <div class="understand-image-container">
-                    <img src="source/neumonia infantil china.webp" alt="Neumonía Infantil" class="understand-image">
+                    <img src="{{ url_for('static', filename='images/odn.webp') }}" alt="Neumonía Infantil" class="understand-image">
                     <div class="understand-overlay">
                         <p>Reducir la mortalidad infantil por neumonía
                             en zonas rurales mediante diagnóstico
@@ -217,13 +175,13 @@
                             <h4>Preguntas clave</h4>
                         </div>
                         <div class="understand-card">
-                            <h4>¿Qué tipo de neumonía detectar?</h4>
+                            <h4>¿Qué tipo de neumonía detecta?</h4>
                         </div>
                         <div class="understand-card">
                             <h4>¿Cómo medir el éxito?</h4>
                         </div>
                         <div class="understand-card">
-                            <h4>¿Qué hacer con imágenes ambiguas</h4>
+                            <h4>¿Qué hacer con imágenes ambiguas?</h4>
                         </div>
                     </div>
                     
@@ -243,18 +201,16 @@
                     <p>
                         Técnica
                         <br>
-                            - Hardware: onrender
-                            <br>
-                            - FRAMEWORK: Flask.
+                            Framework: Flask.
                             <br>
                         Organizacional
                         <br>
-                            - Hospital asociado dispuesto a
+                            Hospital asociado dispuesto a
                             probar el modelo en fase piloto.
                             <br>
                         Riesgos
                         <br>
-                            - Sesgo en datos: Solo incluye
+                            Sesgo en datos: Solo incluye
                             niños
                     </p>
                 </div>
@@ -263,7 +219,8 @@
             <div class="analysis-box">
                 <h3>Evaluación del Dataset</h3>
                 <div class="analysis-content">
-                    <p>TEl dataset de Kaggle (Chest X-Ray Images) es
+                    <p>
+                        El dataset de Kaggle (Chest X-Ray Images) es
                         adecuado para el proyecto, ya que contiene 5,863
                         radiografías etiquetadas (neumonía/normal)
                         validadas por expertos, con resolución suficiente
@@ -271,7 +228,8 @@
                         Aunque está limitado a pacientes pediátricos, su
                         tamaño y calidad permiten entrenar un modelo
                         confiable para el diagnóstico automático,
-                        cumpliendo con el objetivo clínico prioritario..</p>
+                        cumpliendo con el objetivo clínico prioritario
+                    </p>
                 </div>
             </div>
         </div>
@@ -283,44 +241,51 @@
             <div class="engineering-grid">
                 <div class="grid-item large">
                     <h3>Selección</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <p>
+                        Data set público obtenido de Kaggle: “Chest X-Ray Images (Pneumonia)
+                    </p>
+                    <img src="{{ url_for('static', filename='images/set.png') }}" alt="Métricas" class="card-image">
                 </div>
                 <div class="grid-item small">
                     <h3>Limpieza</h3>
-                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <p>
+                        Verificación de imágenes corruptas o con metadatos inconsistentes
+                    </p>
                 </div>
                 <div class="grid-item small">
-                    <h3>Transformación</h3>
-                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                    <h3>Documentación</h3>
+                    <p>
+                        Establecimiento de que datos se están utilizando para el entrenamiento del modelo
+                    </p>
                 </div>
-            </div>
-            <div class="engineering-full-width">
-                <h3>Documentación</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             </div>
         </div>
     </section>
 
     <section id="ing" class="section">
-        <h2>Selección de Algoritmos</h2>
+        <h2>Ingeniería del Modelo</h2>
         <div class="content">
             <div class="engineering-grid">
                 <div class="grid-item large">
-                    <h3>Arquitectura del Modelo</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
-                <div class="grid-item small">
-                    <h3>Entrenamiento</h3>
-                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <h3>Selección de Algoritmos</h3>
+                    <p>
+                        Red neuronal convolucional por su capacidad para extraer características profundas de imágenes médicas.
+                        <br>
+                        .
+                    <img src="{{ url_for('static', filename='images/cnn.png') }}" alt="Métricas" class="card-image">
                 </div>
                 <div class="grid-item small">
                     <h3>Validación</h3>
-                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                    <p>
+                        División clara entre datos de entrenamiento y prueba.
+                    </p>
                 </div>
-            </div>
-            <div class="engineering-full-width">
-                <h3>Ajuste de Hiperparámetros</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <div class="grid-item small">
+                    <h3>Entrenamiento</h3>
+                    <p>
+                        División clara entre datos de entrenamiento y prueba.
+                    </p>
+                </div>
             </div>
         </div>
     </section>
@@ -328,23 +293,30 @@
     <section id="evaluation" class="section">
         <h2 class="evaluation-tittle">Evaluación del Modelo</h2>
         <div class="sub-content">
-           
+        
             <div class="engineering-grid">
                 <div class="grid-item large">
-                    <h3>Métricas de Rendimiento</h3>
-                    <img src="source/metricas.png" alt="Métricas" class="card-image">
-                    <p></p>
+                    <h3>Análisis de Riesgos</h3>
+                    <img src="{{ url_for('static', filename='images/riesgo.jpg') }}" alt="Métricas" class="card-image">
+                    <p>
+                        Posibles sesgos por la naturaleza pediátrica del data set.
+                        <br>
+                        Riesgo de sobreajuste por sobre entrenamiento.
+                    </p>
                 </div>
                 
                 <div class="grid-item small">
-                    <h3>Validación Cruzada</h3>
-                    <p></p>
+                    <h3>Revisión con Expertos</h3>
+                    <p>
+                        Comparar resultados del modelo con evaluaciones de radiólogos si se logra colaboración externa
+                    </p>
                 </div>
                 
                 <div class="grid-item small">
-                    <h3>Curvas de Aprendizaje</h3>
-                    <img src="source/curvas.png" alt="Curvas" class="card-image">
-                    <p></p>
+                    <h3>Métricas de Desempeño</h3>
+                    <p>
+                        minimizar falsos negativos, exactitud, precisión , etc.
+                    </p>
                 </div>
             </div>
         </div>
